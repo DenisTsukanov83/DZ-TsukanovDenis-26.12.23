@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="task-1">
+        <h2>Задача №1</h2>
+        <h3>Напишите функцию, которая возвращает промис, разрешающийся с каким-либо значением.</h3>
+        <div class="task-body">
+            <pre>
+            <code>
+
+            let value;
+            let promise = new Promise((resolve, reject) => {
+                resolve(value = document.querySelector('.task-value').value);
+            });
+
+            promise.then(() => {
+                document.querySelector('.task-result').textContent = value;
+            });
+            </code>
+            </pre>
+            <div class="task-data">
+                <input class="task-value-1" placeholder="Введите значение"></input>
+                <button class="task-1-btn">Старт</button>
+                <div class="task-result task-result-1"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="task-2">
+        <h2>Задача №2</h2>
+        <h3>Создайте промис который всегда отклоняется</h3>
+        <div class="task-body">
+            <pre>
+            <code>
+
+            let promise2 = new Promise((resolve, reject) => {
+                if(false) {
+                    resolve('Успех');
+                } else {
+                    reject('Ошибка');
+                }
+            });
+            promise2.catch((value) => {
+                document.querySelector('.task-result-2').textContent = value;
+            });
+            </code>
+            </pre>
+            <div class="task-data">
+                <button class="task-2-btn">Старт</button>
+                <div class="task-result task-result-2"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="task-3">
+        <h2>Задача №3</h2>
+        <h3>Напишите функцию, которая возвращает промис, который разрешается через 3 секунды с каким-либо значением.</h3>
+        <div class="task-body">
+            <pre>
+            <code>
+
+            function task3() {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve(document.querySelector('.task-value-3').value);
+                    }, 3000);
+                });
+            }
+
+            task3().then((value) => {
+                document.querySelector('.task-result-3').textContent = value;
+            });
+            </code>
+            </pre>
+            <div class="task-data">
+                <input class="task-value-3" placeholder="Введите значение"></input>
+                <button class="task-3-btn">Старт</button>
+                <div class="task-result task-result-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="task-4">
+        <h2>Задача №4</h2>
+        <h3>Напишите две функции, каждая из которых возвращает промис. Одна из них должна разрешаться, а  другая - отклоняться. Затем напишите код, который обрабатывает оба промиса и выводит результаты их выполнения.</h3>
+        <div class="task-body">
+            <pre>
+            <code>
+
+            function success() {
+                return new Promise((resolve, reject) => {
+                    resolve('Успех!')
+                });
+            }
+            
+            function failure() {
+                return new Promise((resolve, reject) => {
+                    reject('Неудача!');
+                });
+            }
+
+            success().then((value) => {
+                document.querySelector('.task-result-4').textContent += `sucess: ${value}`;
+            });
+            
+            failure().catch((value) => {
+                document.querySelector('.task-result-4').textContent += `  failure: ${value}`;
+            });
+            </code>
+            </pre>
+            <div class="task-data">
+                <button class="task-4-btn">Старт</button>
+                <div class="task-result task-result-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="task-5">
+        <h2>Задача №5</h2>
+        <h3>Напишите асинхронную функцию, котрая будет делать запрос к внешнему API(например, получать данные о погоде) и выводить результат в консоль.</h3>
+        <div class="task-body">
+            <pre>
+            <code>
+
+            async function getServerFile() {
+                await fetch('/file.json')
+                .then(data => {
+                    document.querySelector('.task-result-6').textContent = JSON.stringify(data);
+                })
+                .catch(data => {
+                    document.querySelector('.task-result-6').textContent = data;
+                })
+            }
+
+            getWeather(document.querySelector('.task-value-5').value);
+            </code>
+            </pre>
+            <div class="task-data">
+                <input class="task-value-5" placeholder="Введите Ваш город"></input>
+                <button class="task-5-btn">Старт</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="task-6">
+        <h2>Задача №6</h2>
+        <h3>Напишите асинхронную функцию, котрая будет читать данные из файла на сервере и возвращать их в виде строки.</h3>
+        <div class="task-body">
+            <pre>
+            <code>
+
+            async function getServerFile() {
+                await fetch('https://jsonplaceholder.typicode.com/users')
+                .then(data => data.json())
+                .then(data => {
+                    alert(JSON.stringify(data))
+                });
+            }
+
+            getServerFile();
+            </code>
+            </pre>
+            <div class="task-data">
+                <button class="task-6-btn">Старт</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
